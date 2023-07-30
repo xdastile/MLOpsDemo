@@ -8,7 +8,7 @@ env:
   CONTAINER_REGISTRY: 'modelcontainerxd.azurecr.io'
   IMAGE_NAME: 'modelimage'
   RESOURCE_GROUP: 'RG'
-  TAG: '940d0506007a311a73f5deb0564c294cd711f254'
+  TAG: 'latest'
   STORAGE_ACCOUNT: 'rgml8427'
   PLAN: 'RG-appservice'
 
