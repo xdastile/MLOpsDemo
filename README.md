@@ -1,6 +1,6 @@
 
 ## This is an MLOps demo using Azure Function Apps
-This demo illustrates on how to use MLOps principles to deploy machine learning models in Azure. The models are deployed using fastapi as well as
+This demo illustrates how to use MLOps principles to deploy machine learning models in Azure. The models are deployed using fastapi as well as
 Azure function app.
 
 
@@ -41,14 +41,14 @@ mkdir model
 ```
 Inside the *.github/workflows* directory, add the following workflows/piplines:
 
-IaC.yml
-acr.yml
-functionapp.yml
+IaC.yml \
+acr.yml \
+functionapp.yml \
 cleanup.yml
 
 Inside the *model* directory, simply include your saved model model.pkl.
 
-Inside the *src* directory, add the following:
+Inside the *src* directory, add the following: \
 app.py
 
 ### Include Service Principal in your repo
