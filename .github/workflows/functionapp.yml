@@ -1,0 +1,38 @@
+name: Deploy Function App
+
+on:
+  workflow_dispatch:
+
+env:
+  AZURE_FUNCTIONAPP_NAME: modeldeployxd
+  CONTAINER_REGISTRY: 'modelcontainerxd.azurecr.io'
+  IMAGE_NAME: 'modelimage'
+  RESOURCE_GROUP: 'RG'
+  TAG: '940d0506007a311a73f5deb0564c294cd711f254'
+  STORAGE_ACCOUNT: 'rgml8427'
+  PLAN: 'RG-appservice'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Set up Docker
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.CONTAINER_REGISTRY }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Deploy Function App
+      run: |
+        az functionapp create --name ${{ env.AZURE_FUNCTIONAPP_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --plan ${{ env.PLAN }} --runtime custom --image ${{ env.CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }} --storage-account ${{ env.STORAGE_ACCOUNT }} --functions-version 3 --os-type Linux
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
