@@ -41,9 +41,9 @@ mkdir model
 ```
 Inside the *.github/workflows* directory, add the following workflows/piplines:
 
-IaC.yml
-acr.yml
-functionapp.yml
+IaC.yml \
+acr.yml \
+functionapp.yml \
 cleanup.yml
 
 Inside the *model* directory, simply include your saved model model.pkl.
